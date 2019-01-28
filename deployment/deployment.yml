@@ -28,6 +28,8 @@ kind: Service
 metadata:
   name: demo-api
   namespace: ${parameters.namespace}
+  labels:
+    app: demo-api
 spec:
   selector:
     app: demo-api
