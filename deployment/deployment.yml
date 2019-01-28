@@ -18,7 +18,7 @@ spec:
       containers:
         - name: demo-api
           image: armory/demo-api
-          args: ['-bucket', '${parameters.env_name}-bucket']
+          args: ['-bucket', '${parameters.environment_name}-bucket']
           ports:
             - containerPort: 3000
           imagePullPolicy: Always
