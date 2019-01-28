@@ -18,9 +18,10 @@ spec:
       containers:
         - name: demo-api
           image: armory/demo-api
-          args: ['-redis', '${parameters.env_name}-cache.tf-resources.com:6379']
+          args: ['-bucket', '${parameters.env_name}-bucket']
           ports:
             - containerPort: 3000
+          imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service

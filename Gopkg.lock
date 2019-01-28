@@ -2,20 +2,54 @@
 
 
 [[projects]]
-  digest = "1:ad53d1f710522a38d1f0e5e0a55a194b1c6b2cd8e84313568e43523271f0cf62"
-  name = "github.com/go-redis/redis"
+  digest = "1:7fbdc0ca5fc0b0bb66b81ec2fdca82fbe64416742267f11aceb8ed56e6ca3121"
+  name = "github.com/aws/aws-sdk-go"
   packages = [
-    ".",
-    "internal",
-    "internal/consistenthash",
-    "internal/hashtag",
-    "internal/pool",
-    "internal/proto",
-    "internal/util",
+    "aws",
+    "aws/awserr",
+    "aws/awsutil",
+    "aws/client",
+    "aws/client/metadata",
+    "aws/corehandlers",
+    "aws/credentials",
+    "aws/credentials/ec2rolecreds",
+    "aws/credentials/endpointcreds",
+    "aws/credentials/processcreds",
+    "aws/credentials/stscreds",
+    "aws/csm",
+    "aws/defaults",
+    "aws/ec2metadata",
+    "aws/endpoints",
+    "aws/request",
+    "aws/session",
+    "aws/signer/v4",
+    "internal/ini",
+    "internal/s3err",
+    "internal/sdkio",
+    "internal/sdkrand",
+    "internal/sdkuri",
+    "internal/shareddefaults",
+    "private/protocol",
+    "private/protocol/eventstream",
+    "private/protocol/eventstream/eventstreamapi",
+    "private/protocol/query",
+    "private/protocol/query/queryutil",
+    "private/protocol/rest",
+    "private/protocol/restxml",
+    "private/protocol/xml/xmlutil",
+    "service/s3",
+    "service/sts",
   ]
   pruneopts = "UT"
-  revision = "22be8a3eaf992c828cecb69dc07348313bf08d2e"
-  version = "v6.15.1"
+  revision = "81f3829f5a9d041041bdf56e55926691309d7699"
+  version = "v1.16.26"
+
+[[projects]]
+  digest = "1:bb81097a5b62634f3e9fec1014657855610c82d19b9a40c17612e32651e35dca"
+  name = "github.com/jmespath/go-jmespath"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "c2b33e84"
 
 [[projects]]
   digest = "1:0a69a1c0db3591fcefb47f115b224592c8dfa4368b7ba9fae509d5e16cdc95c8"
@@ -56,7 +90,9 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
-    "github.com/go-redis/redis",
+    "github.com/aws/aws-sdk-go/aws",
+    "github.com/aws/aws-sdk-go/aws/session",
+    "github.com/aws/aws-sdk-go/service/s3",
     "github.com/sirupsen/logrus",
   ]
   solver-name = "gps-cdcl"

@@ -15,7 +15,7 @@ resource "aws_elasticache_cluster" "example" {
   engine_version       = "3.2.10"
   port                 = "${var.port}"
   security_group_ids   = ["sg-03172472"]
-  subnet_group_name    = "armory-spin-hal-prod-node"
+  subnet_group_name    = "armoryspinnaker-prod-cache-subnet"
 }
 
 output "hostname" {

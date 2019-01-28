@@ -5,43 +5,56 @@ import (
 	"flag"
 	"fmt"
 	"net/http"
+	"os"
 
-	"github.com/go-redis/redis"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/service/s3"
+
+	"github.com/aws/aws-sdk-go/aws/session"
+
 	"github.com/sirupsen/logrus"
 )
 
-type RedisStatus struct {
+type BucketStatus struct {
 	Status string `json:"status"`
 	Error  string `json:"error,omitempty"`
 }
 
 func main() {
-	redisConnection := flag.String("redis", "localhost:6379", "redis connection string")
+	bucket := flag.String("bucket", "demo-api-bucket", "application bucket")
 	port := flag.Int("port", 3000, "application port")
 	flag.Parse()
 
-	redisClient := redis.NewClient(&redis.Options{
-		Addr:     *redisConnection,
-		Password: "",
-		DB:       0,
-	})
+	os.Setenv("AWS_SDK_LOAD_CONFIG", "true")
+
+	sessionConfig := &aws.Config{
+		Region:                        aws.String("us-west-2"),
+		CredentialsChainVerboseErrors: aws.Bool(true),
+	}
+
+	sess, err := session.NewSession(sessionConfig)
+	if err != nil {
+		logrus.Fatalf("failed to create aws session: %s", err.Error())
+	}
+	s3Client := s3.New(sess)
 
 	r := http.NewServeMux()
 	r.HandleFunc("/api", func(w http.ResponseWriter, r *http.Request) {
-		_, err := redisClient.Ping().Result()
-		w.Header().Add("Content-Type", "application/json")
+		_, err := s3Client.HeadBucket(&s3.HeadBucketInput{
+			Bucket: aws.String(*bucket),
+		})
+
 		if err != nil {
-			json.NewEncoder(w).Encode(RedisStatus{
-				Status: "could not connect to redis server",
+			json.NewEncoder(w).Encode(BucketStatus{
+				Status: fmt.Sprintf("unable to communicate with S3 API for bucket %s", *bucket),
 				Error:  err.Error(),
 			})
 			return
 		}
 
-		json.NewEncoder(w).Encode(RedisStatus{
-			Status: "connection to redis is healthy",
+		json.NewEncoder(w).Encode(BucketStatus{
+			Status: fmt.Sprintf("able to communicate with bucket %s", *bucket),
 		})
-
 	})
 
 	s := &http.Server{
