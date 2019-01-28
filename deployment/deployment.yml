@@ -18,6 +18,7 @@ spec:
       containers:
         - name: demo-api
           image: armory/demo-api
+          args: ['-redis', '${parameters.env_name}-cache.isaacdeleteme.com:6379']
           ports:
             - containerPort: 3000
 ---
