@@ -4,7 +4,7 @@ terraform {
 
 provider "aws" {
   region = "us-west-2"
-  profile = "dev"
+  profile = "prod"
 }
 
 variable "cluster_name" {

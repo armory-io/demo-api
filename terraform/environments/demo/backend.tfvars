@@ -1,5 +1,5 @@
-bucket  = "ethan-terraform-state"
+bucket  = "demo-tf-states"
 key     = "demo-api-dev.tfstate"
 region  = "us-west-2"
 encrypt = false
-profile = "dev"
+profile = "prod"
