@@ -16,3 +16,11 @@ resource "aws_elasticache_cluster" "example" {
   engine_version       = "3.2.10"
   port                 = "${var.port}"
 }
+
+output "hostname" {
+  value = "${aws_elasticache_cluster.example.cache_nodes.0.address}"
+}
+
+output "endpoint" {
+  value = "${join(":", list(aws_elasticache_cluster.example.cache_nodes.0.address, aws_elasticache_cluster.example.cache_nodes.0.port))}"
+}
