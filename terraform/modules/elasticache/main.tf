@@ -1,4 +1,3 @@
-
 variable "cluster_id" {
   default = "demo-redis-cluster"
 }
@@ -15,7 +14,8 @@ resource "aws_elasticache_cluster" "example" {
   parameter_group_name = "default.redis3.2"
   engine_version       = "3.2.10"
   port                 = "${var.port}"
-  security_group_ids = ["sg-03172472"]
+  security_group_ids   = ["sg-03172472"]
+  subnet_group_name    = "subnet-0412e88040d7e3411"
 }
 
 output "hostname" {
