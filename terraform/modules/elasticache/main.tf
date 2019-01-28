@@ -15,6 +15,7 @@ resource "aws_elasticache_cluster" "example" {
   parameter_group_name = "default.redis3.2"
   engine_version       = "3.2.10"
   port                 = "${var.port}"
+  security_group_ids = ["sg-03172472"]
 }
 
 output "hostname" {

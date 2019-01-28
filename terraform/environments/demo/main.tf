@@ -17,8 +17,8 @@ module "cache" {
 }
 
 resource "aws_route53_record" "www" {
-  zone_id = "ZC91L3I7W915I"
-  name    = "${var.cluster_name}-cache.isaacdeleteme.com."
+  zone_id = "Z641P3484FWS1"
+  name    = "${var.cluster_name}-cache.tf-resources.com."
   type    = "CNAME"
   ttl     = "300"
   records = ["${module.cache.hostname}"]
