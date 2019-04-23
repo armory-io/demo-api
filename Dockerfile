@@ -15,7 +15,7 @@ EXPOSE 3000
 
 WORKDIR /usr/local/bin
 
-RUN apk add -U ca-certificates vim bash
+RUN apk add -U ca-certificates
 
 COPY --from=builder /go/bin/demo-api .
 
