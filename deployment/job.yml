@@ -11,7 +11,7 @@ spec:
       restartPolicy: Never
       containers:
         - name: test
-          image: nana
+          image: nginx
           command:
           -  echo
           - "hello world"
