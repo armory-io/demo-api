@@ -1,6 +1,8 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
+  annotations:
+    strategy.spinnaker.io/versioned: 'true'
   name: jobjob-v000
   namespace: ethan-dev
 spec:
