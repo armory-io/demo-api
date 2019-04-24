@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: jobjob
+  namespace: ethan-dev
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: test
+          image: alpine
+          command:
+          -  echo
+          - "hello world"
