@@ -24,7 +24,7 @@ func main() {
 	bucket := flag.String("bucket", "demo-api-bucket", "application bucket")
 	port := flag.Int("port", 3000, "application port")
 	flag.Parse()
-
+	// some comment
 	os.Setenv("AWS_SDK_LOAD_CONFIG", "true")
 
 	sessionConfig := &aws.Config{
