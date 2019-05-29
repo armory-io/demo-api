@@ -12,7 +12,7 @@ variable "environment_name" {
 }
 
 resource "aws_s3_bucket" "b" {
-  bucket = "${var.environment_name}-bucket"
+  bucket = "${var.environment_name}-branch-bucket"
   acl    = "public-read"
 
   tags = {
