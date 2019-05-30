@@ -19,3 +19,7 @@ resource "aws_s3_bucket" "b" {
     Name = "Bucket for ${var.environment_name}"
   }
 }
+
+output "s3_bucket_arn" {
+  value = "${aws_s3_bucket.b.arn}"
+}
